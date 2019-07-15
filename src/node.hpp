@@ -131,7 +131,10 @@ class Node {
   void TriplePreOrder(
       std::function<void(const Node*, const Node*, const Node*)> f_root,
       std::function<void(const Node*, const Node*, const Node*)> f_internal) {
-    assert(children_.size() == 3);
+    if (children_.size() != 3) {
+      std::cerr << "The tree given does not have a trifurcation at the root.\n";
+      abort();
+    }
     f_root(children_[0].get(), children_[1].get(), children_[2].get());
     f_root(children_[1].get(), children_[2].get(), children_[0].get());
     f_root(children_[2].get(), children_[0].get(), children_[1].get());
@@ -172,7 +175,7 @@ class Node {
             assert(node->Children().size() == 2);
             auto child0 = node->Children()[0].get();
             auto child1 = node->Children()[1].get();
-            // Virtual root up the tree.
+            // Virtual root above parent in tree.
             f(sister, false, node, false, child0, false, child1, false);
             // Virtual root in sister.
             f(parent, true, node, false, child0, false, child1, false);

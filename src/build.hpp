@@ -74,8 +74,6 @@ BitsetUInt32Map RootsplitSupportOf(const Node::TopologyCounter& topologies) {
       auto count = iter.second;
       auto tag_to_bitset = TagBitsetMapOf(topology);
       auto leaf_count = topology->LeafCount();
-      // TODO(ematsen) make a more informative error message when people don't
-      // put in a bifurcating tree with a trifurcation at the root.
       topology->PCSSPreOrder(
           [&subsplit_support, &tag_to_bitset, &count, &leaf_count](
               const Node* uncut_parent_node, bool uncut_parent_direction,
