@@ -45,6 +45,11 @@ PYBIND11_MODULE(sbn, m) {
       .def("get_rootsplit_indexer", &SBNInstance::GetRootsplitIndexer)
       .def("get_pcss_indexer", &SBNInstance::GetPCSSIndexer)
       .def("sbn_total_prob", &SBNInstance::SBNTotalProb)
+      .def("trees", &SBNInstance::Trees)
       // Member Variables
       .def_readwrite("sbn_probs", &SBNInstance::sbn_probs_);
+  
+  py::class_<Tree>(m, "tree")
+    //.def("topology", &Tree::Topology)
+    .def_readwrite("branch_lengths", &Tree::branch_lengths_);
 }

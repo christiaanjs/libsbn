@@ -173,6 +173,14 @@ struct SBNInstance {
         });
     return results;
   }
+
+  std::vector<Tree> Trees() {
+    std::vector<Tree> trees;
+    for(int i = 0; i < TreeCount(); i++){
+      trees.push_back(*tree_collection_->GetTree(i));
+    }
+    return trees;
+  }
 };
 
 #ifdef DOCTEST_LIBRARY_INCLUDED
